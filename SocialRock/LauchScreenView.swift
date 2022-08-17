@@ -19,7 +19,7 @@ struct LaunchScreenView: View {
         VStack {
             ZStack{
 
-                Text(/*systemName: */ "🤘")
+                Text("🤘")
                     .font(.system(size: 200))
                     .rotation3DEffect(Angle(degrees: tilt ? 0 : -90), axis: (x: 1, y: 0, z: 0))
                     .animation(.linear(duration: 1), value: tilt)

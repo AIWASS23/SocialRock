@@ -10,24 +10,16 @@ import Combine
 
 final class SignInViewModel: ObservableObject {
 
-    // MARK: - Properties
 
     @Published var email = ""
     @Published var password = ""
 
-    // MARK: -
-
     @Published var hasError = false
-
     @Published var isSigningIn = false
-
-    // MARK: -
 
     var canSignIn: Bool {
         !email.isEmpty && !password.isEmpty
     }
-
-    // MARK: - Public API
 
     func signIn() {
         guard !email.isEmpty && !password.isEmpty else {
@@ -35,7 +27,6 @@ final class SignInViewModel: ObservableObject {
         }
 
         var request = URLRequest(url: URL(string: "https://adaspace.local/users/login")!)
-
         request.httpMethod = "POST"
 
         let authData = (email + ":" + password).data(using: .utf8)!.base64EncodedString()

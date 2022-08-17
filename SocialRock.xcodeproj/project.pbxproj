@@ -14,7 +14,8 @@
 		141EC4D928A3EC2B00EBC7DF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141EC4D828A3EC2B00EBC7DF /* Post.swift */; };
 		141EC4DB28A3EC7900EBC7DF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141EC4DA28A3EC7900EBC7DF /* User.swift */; };
 		141EC4DF28A5319400EBC7DF /* LauchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141EC4DE28A5319400EBC7DF /* LauchScreenView.swift */; };
-		14C573B228ABD2BE009B7B26 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C573B128ABD2BE009B7B26 /* SignIn.swift */; };
+		142B6FB328AD07F500F29B1B /* LoginLogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B6FB228AD07F500F29B1B /* LoginLogoutView.swift */; };
+		14C573B228ABD2BE009B7B26 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C573B128ABD2BE009B7B26 /* SignInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +27,8 @@
 		141EC4D828A3EC2B00EBC7DF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		141EC4DA28A3EC7900EBC7DF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		141EC4DE28A5319400EBC7DF /* LauchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauchScreenView.swift; sourceTree = "<group>"; };
-		14C573B128ABD2BE009B7B26 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		142B6FB228AD07F500F29B1B /* LoginLogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogoutView.swift; sourceTree = "<group>"; };
+		14C573B128ABD2BE009B7B26 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			children = (
 				141EC4C728A3CC1200EBC7DF /* SocialRockApp.swift */,
 				141EC4DE28A5319400EBC7DF /* LauchScreenView.swift */,
+				142B6FB228AD07F500F29B1B /* LoginLogoutView.swift */,
 				141EC4D528A3CD7800EBC7DF /* API.swift */,
 				14C573B028ABD25B009B7B26 /* ViewModel */,
 				141EC4D728A3EC1000EBC7DF /* Model */,
@@ -90,7 +93,7 @@
 		14C573B028ABD25B009B7B26 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				14C573B128ABD2BE009B7B26 /* SignIn.swift */,
+				14C573B128ABD2BE009B7B26 /* SignInView.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -165,7 +168,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14C573B228ABD2BE009B7B26 /* SignIn.swift in Sources */,
+				142B6FB328AD07F500F29B1B /* LoginLogoutView.swift in Sources */,
+				14C573B228ABD2BE009B7B26 /* SignInView.swift in Sources */,
 				141EC4D628A3CD7800EBC7DF /* API.swift in Sources */,
 				141EC4C828A3CC1200EBC7DF /* SocialRockApp.swift in Sources */,
 				141EC4DB28A3EC7900EBC7DF /* User.swift in Sources */,
