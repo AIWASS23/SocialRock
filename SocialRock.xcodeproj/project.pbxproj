@@ -15,6 +15,8 @@
 		141EC4DB28A3EC7900EBC7DF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141EC4DA28A3EC7900EBC7DF /* User.swift */; };
 		141EC4DF28A5319400EBC7DF /* LauchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141EC4DE28A5319400EBC7DF /* LauchScreenView.swift */; };
 		142B6FB328AD07F500F29B1B /* LoginLogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B6FB228AD07F500F29B1B /* LoginLogoutView.swift */; };
+		142B6FB828AE5FB800F29B1B /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B6FB728AE5FB800F29B1B /* Key.swift */; };
+		142B6FC028AE745C00F29B1B /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 142B6FBF28AE745C00F29B1B /* KeychainAccess */; };
 		14C573B228ABD2BE009B7B26 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C573B128ABD2BE009B7B26 /* SignInView.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,7 @@
 		141EC4DA28A3EC7900EBC7DF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		141EC4DE28A5319400EBC7DF /* LauchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauchScreenView.swift; sourceTree = "<group>"; };
 		142B6FB228AD07F500F29B1B /* LoginLogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogoutView.swift; sourceTree = "<group>"; };
+		142B6FB728AE5FB800F29B1B /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		14C573B128ABD2BE009B7B26 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -36,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				142B6FC028AE745C00F29B1B /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +68,7 @@
 				141EC4C728A3CC1200EBC7DF /* SocialRockApp.swift */,
 				141EC4DE28A5319400EBC7DF /* LauchScreenView.swift */,
 				142B6FB228AD07F500F29B1B /* LoginLogoutView.swift */,
-				141EC4D528A3CD7800EBC7DF /* API.swift */,
+				142B6FB628AE5F8F00F29B1B /* Service */,
 				14C573B028ABD25B009B7B26 /* ViewModel */,
 				141EC4D728A3EC1000EBC7DF /* Model */,
 				141EC4CB28A3CC1300EBC7DF /* Assets.xcassets */,
@@ -88,6 +92,15 @@
 				141EC4DA28A3EC7900EBC7DF /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		142B6FB628AE5F8F00F29B1B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				141EC4D528A3CD7800EBC7DF /* API.swift */,
+				142B6FB728AE5FB800F29B1B /* Key.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		14C573B028ABD25B009B7B26 /* ViewModel */ = {
@@ -114,6 +127,9 @@
 			dependencies = (
 			);
 			name = SocialRock;
+			packageProductDependencies = (
+				142B6FBF28AE745C00F29B1B /* KeychainAccess */,
+			);
 			productName = SocialRock;
 			productReference = 141EC4C428A3CC1200EBC7DF /* SocialRock.app */;
 			productType = "com.apple.product-type.application";
@@ -142,6 +158,9 @@
 				Base,
 			);
 			mainGroup = 141EC4BB28A3CC1200EBC7DF;
+			packageReferences = (
+				142B6FBE28AE745C00F29B1B /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			productRefGroup = 141EC4C528A3CC1200EBC7DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -173,6 +192,7 @@
 				141EC4D628A3CD7800EBC7DF /* API.swift in Sources */,
 				141EC4C828A3CC1200EBC7DF /* SocialRockApp.swift in Sources */,
 				141EC4DB28A3EC7900EBC7DF /* User.swift in Sources */,
+				142B6FB828AE5FB800F29B1B /* Key.swift in Sources */,
 				141EC4DF28A5319400EBC7DF /* LauchScreenView.swift in Sources */,
 				141EC4D928A3EC2B00EBC7DF /* Post.swift in Sources */,
 			);
@@ -375,6 +395,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		142B6FBE28AE745C00F29B1B /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		142B6FBF28AE745C00F29B1B /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 142B6FBE28AE745C00F29B1B /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 141EC4BC28A3CC1200EBC7DF /* Project object */;
 }

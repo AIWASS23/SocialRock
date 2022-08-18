@@ -44,7 +44,6 @@ final class SignInViewModel: ObservableObject {
 
                         print(signInResponse)
 
-                        // TODO: Cache Access Token in Keychain
                     } catch {
                         print("Unable to Decode Response \(error)")
                     }
@@ -54,12 +53,9 @@ final class SignInViewModel: ObservableObject {
             }
         }.resume()
     }
-
 }
 
 fileprivate struct SignInResponse: Decodable {
-
-    // MARK: - Properties
 
     let accessToken: String
 
