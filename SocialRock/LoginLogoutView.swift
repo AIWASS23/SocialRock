@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@ObservedObject var viewModel: SignInViewModel
+@ObservedObject var viewModel:  = SignInViewModel
 
 struct LoginLogoutView: View {
     var body: some View {
