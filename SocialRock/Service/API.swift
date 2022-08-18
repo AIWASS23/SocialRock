@@ -12,7 +12,7 @@ struct API {
     @KeychainStorage("Token") static var mockToken
 
     static func getLikes(postId: String) async -> [Usuario] {
-        var urlRequest = URLRequest(url: URL(string: "http://adaspace.local/likes/liking_users/\(postId)")!)
+        let urlRequest = URLRequest(url: URL(string: "http://adaspace.local/likes/liking_users/\(postId)")!)
 
         do {
             let (data, _) = try await URLSession.shared.data(for: urlRequest)
@@ -25,7 +25,7 @@ struct API {
     }
 
     static func getUser(userId: String) async -> Usuario? {
-        var urlRequest = URLRequest(url: URL(string: "http://adaspace.local/users/\(userId)")!)
+        let urlRequest = URLRequest(url: URL(string: "http://adaspace.local/users/\(userId)")!)
 
         do {
             let (data, _) = try await URLSession.shared.data(for: urlRequest)
@@ -36,71 +36,66 @@ struct API {
         }
         return nil
     }
+    
+    static func createUser(name: String, email: String, password: String) async -> Session? {
+        
 
-    static func loginUser(model: LoginModel) async -> String?{
-        //print(model)
-        var urlRequest = URLRequest(url: URL(string: "http://adaspace.local/users/login")!)
-        urlRequest.httpMethod = "POST"
-
-        let loginString = "\(model.email):\(model.password)".data(using: .utf8)!.base64EncodedString()
-
-        urlRequest.setValue("Basic \(loginString)", forHTTPHeaderField: "Authorization")
-
-        do {
-
-            //let data = jsonString.data(using: .utf8)!
-            let (data, _) = try await URLSession.shared.data(for: urlRequest)
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-                if let responseJSON = responseJSON as? [String: Any] {
-                    return responseJSON["token"] as? String ?? nil
-                }
-
-
-        } catch {
-            print(error)
-        }
-
-        return nil
-
-    }
-
-    static func createUser(model: LoginModel) async -> String? {
         var urlRequest = URLRequest(url: URL(string: API.domain + "users")!)
+        
+        let body: [String:Any] = ["name": name,
+                                  "email": email,
+                                  "password": password
+        ]
+        
         urlRequest.httpMethod = "POST"
+        let jsonBody = try? JSONSerialization.data(withJSONObject: body)
 
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-
-
-        do {
-            urlRequest.httpBody = try JSONEncoder().encode(model)
-        }catch let error {
-               print(error.localizedDescription)
-           }
+        urlRequest.httpBody = jsonBody
+        urlRequest.allHTTPHeaderFields = [
+            "Content-Type": "application/json"
+        ]
 
 
         do {
-
-            //let data = jsonString.data(using: .utf8)!
-            let (data, _) = try await URLSession.shared.data(for: urlRequest)
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-                if let responseJSON = responseJSON as? [String: Any] {
-                    print(responseJSON)
-                    return responseJSON["token"] as? String ?? nil
-
+            let (data,_) = try await URLSession.shared.data(for: urlRequest)
+                    let userData = try JSONDecoder().decode(Session.self, from: data)
+                    return userData
+                }catch {
+                    print(error)
                 }
+                return nil
+                
+            }
 
-
-        } catch {
+    static func loginUser(username: String, password: String) async -> Session? {
+        
+        let login: String = "\(username):\(password)"
+        let loginData = login.data(using: String.Encoding.utf8)!
+        let base64 = loginData.base64EncodedString()
+        print(base64)
+        
+        var request = URLRequest(url:URL(string:"http://adaspace.local/users/login")!)
+        request.httpMethod = "POST"
+        request.setValue("Basic \(base64)", forHTTPHeaderField: "Authorization")
+        do {
+            
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let session = try JSONDecoder().decode(Session.self, from: data)
+            
+            return session
+                }
+        
+        catch {
             print(error)
         }
 
         return nil
+
     }
 
     static func getPosts() async -> [Postagem] {
 
-        var urlRequest = URLRequest(url: URL(string: API.domain + "posts")!)
+        let urlRequest = URLRequest(url: URL(string: API.domain + "posts")!)
 
         do {
 
@@ -113,43 +108,50 @@ struct API {
         }
         return []
     }
-// estudar
     
-    static func createPost(imageData:Data?, content:String) async {
-
-        let boundary = "Boundary-\(UUID().uuidString)"
-
-        var urlRequest = URLRequest(url: URL(string: API.domain + "posts")!)
+    static func createpost(token: String, content: String) async -> Postagem? {
+        
+        print(token)
+        
+        var urlRequest = URLRequest (url: URL(string: API.domain + "posts")!)
+        
         urlRequest.httpMethod = "POST"
-        urlRequest.setValue( "Bearer \(mockToken)", forHTTPHeaderField: "Authorization")
-        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-
-        let httpBody = NSMutableData()
-
-        httpBody.appendString(convertFormField(named: "content", value: content, using: boundary))
-
-        if let imageData = imageData {
-            httpBody.append(convertFileData(fieldName: "media",
-                                            fileName: "imagename.png",
-                                            mimeType: "image/png",
-                                            fileData: imageData,
-                                            using: boundary))
-        }
-
-
-        httpBody.appendString("--\(boundary)--")
-
-        urlRequest.httpBody = httpBody as Data
-
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
-            if case (200..<300) = statusCode{
-                print("Deu certo")
+        urlRequest.setValue("text/plain", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            
+        let data = content.data(using: .utf8)!
+        urlRequest.httpBody = data as Data
+        let decoder = JSONDecoder()
+        let formatter = ISO8601DateFormatter()
+            
+            decoder.dateDecodingStrategy = .custom({ decoder in
+                let container = try decoder.singleValueContainer()
+                let dateString = try container.decode(String.self)
+                
+                if let date = formatter.date(from: dateString){
+                    return date
+                }
+                
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "")
+            })
+            
+            do {
+                let (data, response) = try await URLSession.shared.data(for: urlRequest)
+                print((response as! HTTPURLResponse).statusCode)
+                print(data)
+                let post = try decoder.decode(Postagem.self, from: data)
+                return post
+                
             }
-          // handle the response here
-        }.resume()
+            catch {
+                print(error)
+                
+            }
+            return nil
+        }
+    
     }
-}
+
 
 extension API{
 
@@ -179,7 +181,10 @@ extension NSMutableData {
   func appendString(_ string: String) {
     if let data = string.data(using: .utf8) {
       self.append(data)
-    }
-  }
-}
+                }
+            }
+        }
+
+
+
 

@@ -56,6 +56,8 @@ extension Postagem: Decodable {
         let updatedAtString = try values.decode(String.self, forKey: .updatedAt)
         updatedAt = dateFormatter.date(from: updatedAtString)!
 
+        user = nil
         likes = []
+        isLikedByUser = false
     }
 }
