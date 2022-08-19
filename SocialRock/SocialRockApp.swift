@@ -12,6 +12,7 @@ struct SocialRockApp: App {
     var body: some Scene {
         WindowGroup {
             LaunchScreenView()
+            //LoginLogoutView()
         }
     }
 }

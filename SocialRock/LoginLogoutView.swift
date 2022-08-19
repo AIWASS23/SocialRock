@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-@ObservedObject var viewModel:  = SignInViewModel
 
 struct LoginLogoutView: View {
+
+    @ObservedObject var viewModel: SignInViewModel = SignInViewModel()
+
     var body: some View {
         HStack {
             Spacer()
