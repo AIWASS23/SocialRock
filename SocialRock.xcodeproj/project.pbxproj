@@ -18,6 +18,7 @@
 		142B6FB828AE5FB800F29B1B /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B6FB728AE5FB800F29B1B /* Key.swift */; };
 		142B6FC028AE745C00F29B1B /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 142B6FBF28AE745C00F29B1B /* KeychainAccess */; };
 		14C573B228ABD2BE009B7B26 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C573B128ABD2BE009B7B26 /* SignInView.swift */; };
+		14CF5F31292CE4DD0090ED71 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14CF5F30292CE4DD0090ED71 /* Launch Screen.storyboard */; };
 		3F33A41128AE817C00CE382D /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F33A41028AE817C00CE382D /* SessionModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		142B6FB228AD07F500F29B1B /* LoginLogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogoutView.swift; sourceTree = "<group>"; };
 		142B6FB728AE5FB800F29B1B /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		14C573B128ABD2BE009B7B26 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		14CF5F30292CE4DD0090ED71 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3F33A41028AE817C00CE382D /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +76,7 @@
 				14C573B028ABD25B009B7B26 /* ViewModel */,
 				141EC4D728A3EC1000EBC7DF /* Model */,
 				141EC4CB28A3CC1300EBC7DF /* Assets.xcassets */,
+				14CF5F30292CE4DD0090ED71 /* Launch Screen.storyboard */,
 				141EC4CD28A3CC1300EBC7DF /* Preview Content */,
 			);
 			path = SocialRock;
@@ -178,6 +181,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14CF5F31292CE4DD0090ED71 /* Launch Screen.storyboard in Resources */,
 				141EC4CF28A3CC1300EBC7DF /* Preview Assets.xcassets in Resources */,
 				141EC4CC28A3CC1300EBC7DF /* Assets.xcassets in Resources */,
 			);
