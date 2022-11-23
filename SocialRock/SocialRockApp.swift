@@ -11,8 +11,8 @@ import SwiftUI
 struct SocialRockApp: App {
     var body: some Scene {
         WindowGroup {
-            LaunchScreenView()
-            //LoginLogoutView()
+            //LaunchScreenView()
+            LoginLogoutView()
         }
     }
 }
