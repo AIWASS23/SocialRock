@@ -60,4 +60,6 @@ extension Postagem: Decodable {
         likes = []
         isLikedByUser = false
     }
+
+    
 }
